@@ -3,6 +3,94 @@
   Below, you can see an example of a class called "menu" that changes the color of the text to blue. Modify according to your needs.
 */
 
-.menu {
-  color: blue;
+body {
+  background-color: #f8f9fa;
+}
+
+header {
+  background-color: #0c7dae;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+header img {
+  margin-bottom: 30px;
+}
+
+nav {
+  background-color: #0c7dae;
+}
+
+nav a {
+  color: white;
+}
+
+section {
+  padding: 20px;
+}
+
+.food-item {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.square-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.food-item img {
+  margin-right: 20px;
+}
+
+.food-details {
+  flex: 1;
+}
+
+.food-details h2 {
+  margin-top: 0;
+}
+
+.price {
+  margin-bottom: 10px;
+}
+
+.price-and-add {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.add-button {
+  background-color: #d1d3d1;
+  color: black;
+  border: none;
+  padding: 2px 17px;
+  border-radius: 13px;
+  cursor: pointer;
+  box-shadow: 0 8px 5px 0 rgba(0,0,0,0.2), 0 6px 5px 0 rgba(0,0,0,0.19);
+}
+
+.lead {
+  font-family: 'Pacifico', cursive;
+  color: #3920ac;
+  margin-top: 5px;
+  margin-bottom: 1px;
+}
+
+.menu-item {
+  font-weight: 700;
 }

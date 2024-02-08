@@ -1,7 +1,7 @@
 import './App.css';
 import MenuItem from './components/MenuItem';
 
-// import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
+import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
 
 // Menu data. An array of objects where each object represents a menu item. Each menu item has an id, title, description, image name, and price.
 // You can use the image name to get the image from the images folder.
@@ -82,11 +82,78 @@ const menuItems = [
 function App() {
   return (
     <div>
-      <h1>Menu</h1>
-      <div className="menu">
-        {/* Display menu items dynamicaly here by iterating over the provided menuItems */}
-        <MenuItem title={menuItems[0].title} /> {/* Example for how to use a component */}
-      </div>
+      <header>
+        <div className="container">
+          <img src={require("./images/food_logo.jpg")} alt="Food App Logo" className="img-fluid" style={{ maxWidth: '200px' }} />
+          <p className="lead">Just some food I enjoy</p>
+          <h1>Sugi's Top Picks</h1>
+        </div>
+      </header>
+      <section className="container">
+        <div className="menu">
+          {/* Display menu items dynamicaly here by iterating over the provided menuItems */}
+          <MenuItem
+            title={menuItems[0].title}
+            description={menuItems[0].description}
+            imageName={menuItems[0].imageName}
+            price={menuItems[0].price}
+          />
+          <MenuItem
+            title={menuItems[1].title}
+            description={menuItems[1].description}
+            imageName={menuItems[1].imageName}
+            price={menuItems[1].price}
+          />
+          <MenuItem
+            title={menuItems[2].title}
+            description={menuItems[2].description}
+            imageName={menuItems[2].imageName}
+            price={menuItems[2].price}
+          />
+          <MenuItem
+            title={menuItems[3].title}
+            description={menuItems[3].description}
+            imageName={menuItems[3].imageName}
+            price={menuItems[3].price}
+          />
+          <MenuItem
+            title={menuItems[4].title}
+            description={menuItems[4].description}
+            imageName={menuItems[4].imageName}
+            price={menuItems[4].price}
+          />
+          <MenuItem
+            title={menuItems[5].title}
+            description={menuItems[5].description}
+            imageName={menuItems[5].imageName}
+            price={menuItems[5].price}
+          />
+          <MenuItem
+            title={menuItems[6].title}
+            description={menuItems[6].description}
+            imageName={menuItems[6].imageName}
+            price={menuItems[6].price}
+          />
+          <MenuItem
+            title={menuItems[7].title}
+            description={menuItems[7].description}
+            imageName={menuItems[7].imageName}
+            price={menuItems[7].price}
+          />
+          <MenuItem
+            title={menuItems[8].title}
+            description={menuItems[8].description}
+            imageName={menuItems[8].imageName}
+            price={menuItems[8].price}
+          />
+          <MenuItem
+            title={menuItems[9].title}
+            description={menuItems[9].description}
+            imageName={menuItems[9].imageName}
+            price={menuItems[9].price}
+          />
+        </div>
+      </section>
     </div>
   );
 }
