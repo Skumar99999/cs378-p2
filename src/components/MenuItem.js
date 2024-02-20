@@ -8,7 +8,7 @@ import React from 'react';
 
 import '../App.css'; // Import the CSS file for styling
 
-const MenuItem = ({ title, description, imageName, price }) => {
+const MenuItem = ({ title, description, imageName, price, handleRemoveItem, handleAddItem, itemCount }) => {
     return (
         <div className="food-item">
             <img src={require(`../images/${imageName}`)} alt={title} className="img-fluid square-image" />
@@ -17,7 +17,11 @@ const MenuItem = ({ title, description, imageName, price }) => {
                 <p>{description}</p>
                 <div className="price-and-add">
                     <p className="price">Price: ${price.toFixed(2)}</p>
-                    <button className="add-button">Add</button>
+                    <div className="item-controls">
+                        <button onClick={handleRemoveItem}>-</button>
+                        <span>{itemCount}</span>
+                        <button onClick={handleAddItem}>+</button>
+                    </div>
                 </div>
             </div>
         </div>

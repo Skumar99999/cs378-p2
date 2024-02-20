@@ -1,8 +1,8 @@
+import React, { useState } from 'react';
 import './App.css';
 import MenuItem from './components/MenuItem';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
-
 // Menu data. An array of objects where each object represents a menu item. Each menu item has an id, title, description, image name, and price.
 // You can use the image name to get the image from the images folder.
 const menuItems = [
@@ -80,6 +80,53 @@ const menuItems = [
 
 
 function App() {
+  const [cartItems, setCartItems] = useState(Array(menuItems.length).fill(0));
+  const [subtotal, setSubtotal] = useState(0);
+
+  const handleAddItem = (index) => {
+    const newCartItems = [...cartItems];
+    newCartItems[index]++;
+    setCartItems(newCartItems);
+    updateSubtotal(newCartItems);
+  };
+
+  const handleRemoveItem = (index) => {
+    if (cartItems[index] > 0) {
+      const newCartItems = [...cartItems];
+      newCartItems[index]--;
+      setCartItems(newCartItems);
+      updateSubtotal(newCartItems);
+    }
+  };
+
+  const handleClearAll = () => {
+    setCartItems(Array(menuItems.length).fill(0));
+    setSubtotal(0);
+  };
+
+  const updateSubtotal = (items) => {
+    let total = 0;
+    for (let i = 0; i < items.length; i++) {
+      total += items[i] * menuItems[i].price;
+    }
+    setSubtotal(total);
+  };
+
+  const handleOrder = () => {
+    if (cartItems.every(item => item === 0)) {
+      alert("No items in cart");
+      return;
+    }
+
+    let orderSummary = "Order Summary:\n";
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i] > 0) {
+        orderSummary += `${menuItems[i].title}: ${cartItems[i]}\n`;
+      }
+    }
+    alert(orderSummary);
+  };
+
   return (
     <div>
       <header>
@@ -91,69 +138,30 @@ function App() {
       </header>
       <section className="container">
         <div className="menu">
-          {/* Display menu items dynamicaly here by iterating over the provided menuItems */}
-          <MenuItem
-            title={menuItems[0].title}
-            description={menuItems[0].description}
-            imageName={menuItems[0].imageName}
-            price={menuItems[0].price}
-          />
-          <MenuItem
-            title={menuItems[1].title}
-            description={menuItems[1].description}
-            imageName={menuItems[1].imageName}
-            price={menuItems[1].price}
-          />
-          <MenuItem
-            title={menuItems[2].title}
-            description={menuItems[2].description}
-            imageName={menuItems[2].imageName}
-            price={menuItems[2].price}
-          />
-          <MenuItem
-            title={menuItems[3].title}
-            description={menuItems[3].description}
-            imageName={menuItems[3].imageName}
-            price={menuItems[3].price}
-          />
-          <MenuItem
-            title={menuItems[4].title}
-            description={menuItems[4].description}
-            imageName={menuItems[4].imageName}
-            price={menuItems[4].price}
-          />
-          <MenuItem
-            title={menuItems[5].title}
-            description={menuItems[5].description}
-            imageName={menuItems[5].imageName}
-            price={menuItems[5].price}
-          />
-          <MenuItem
-            title={menuItems[6].title}
-            description={menuItems[6].description}
-            imageName={menuItems[6].imageName}
-            price={menuItems[6].price}
-          />
-          <MenuItem
-            title={menuItems[7].title}
-            description={menuItems[7].description}
-            imageName={menuItems[7].imageName}
-            price={menuItems[7].price}
-          />
-          <MenuItem
-            title={menuItems[8].title}
-            description={menuItems[8].description}
-            imageName={menuItems[8].imageName}
-            price={menuItems[8].price}
-          />
-          <MenuItem
-            title={menuItems[9].title}
-            description={menuItems[9].description}
-            imageName={menuItems[9].imageName}
-            price={menuItems[9].price}
-          />
+          {menuItems.map((item, index) => (
+            <div key={item.id}>
+              <MenuItem
+                title={item.title}
+                description={item.description}
+                imageName={item.imageName}
+                price={item.price}
+                handleRemoveItem={() => handleRemoveItem(index)}
+                handleAddItem={() => handleAddItem(index)} 
+                itemCount={cartItems[index]} 
+              />
+            </div>
+          ))}
         </div>
       </section>
+      <footer>
+        <div className="subtotal">
+          Subtotal: ${subtotal.toFixed(2)}
+        </div>
+        <div className="cart-controls">
+          <button onClick={handleClearAll}>Clear all</button>
+          <button onClick={handleOrder}>Order</button>
+        </div>
+      </footer>
     </div>
   );
 }
